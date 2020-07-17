@@ -1,28 +1,16 @@
-
+library(shinydashboard)
 library(shiny)
 library(shinycssloaders)
 
-shinyUI(
-  fluidPage(
-    
-    tags$head(includeCSS("www/index.css")),
-    
-#     HTML('<!doctype html>
-# <html lang="en">
-# 
-#   <!-- Configuracion -->
-#   <head>
-#     <!-- Required meta tags -->
-#     <!-- Caracteres -->
-#     <meta charset="utf-8">
-#     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-# 
-#     <!-- Bootstrap CSS -->
-#     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-#     <link rel="stylesheet" href="index.css">
-#     <title>PlatziConf Hawaii</title>
-#   </head>'), 
+dbHeader <- dashboardHeader(title = "Preguntas 😊", 
+                            titleWidth = 360)
 
+sidebar <- dashboardSidebar(width = 0)
+
+body <- dashboardBody(
+  br(), 
+  fluidPage(
+    tags$head(includeCSS("www/index.css")),
     fluidRow(
       column(4, offset = 4, 
              selectizeInput(inputId = "selCat", 
@@ -37,10 +25,11 @@ shinyUI(
   fluidRow(
     column(10, offset = 1, 
       withSpinner(textOutput("texto"))
+      )
     )
   )
- 
-)
 ) 
-    
+
+# Generar la Interfaz de Usuario
+ui <- dashboardPage(skin = "black", dbHeader, sidebar, body) 
  
