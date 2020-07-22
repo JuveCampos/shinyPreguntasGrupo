@@ -3,7 +3,7 @@ library(shiny)
 library(shinycssloaders)
 
 dbHeader <- dashboardHeader(title = "Preguntas 😊", 
-                            titleWidth = 360)
+                            titleWidth = 180)
 
 sidebar <- dashboardSidebar(width = 0)
 
