@@ -19,6 +19,14 @@ body <- dashboardBody(
                             selected = cats[2]))),
     fluidRow(
       column(4, offset = 4, 
+             fileInput("file1", "Elige un archivo Excel",
+                       accept = c(".xlsx")))),
+    fluidRow(
+      column(4, offset = 4, 
+             actionButton(inputId = "btnAccion_prueba", 
+                          label = "Obtener pregunta de la base ingresada"))),
+    fluidRow(
+      column(4, offset = 4, 
              actionButton(inputId = "btnAccion", 
                           label = "Obtener pregunta"))),
   br(),  
@@ -26,7 +34,13 @@ body <- dashboardBody(
     column(10, offset = 1, 
       withSpinner(textOutput("texto"))
       )
-    )
+    ),
+  br(),
+  fluidRow(
+    column(10, offset = 1,
+           withSpinner(textOutput("texto_prueba")
+                       
+           )))
   )
 ) 
 
