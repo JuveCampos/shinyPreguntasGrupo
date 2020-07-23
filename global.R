@@ -1,12 +1,12 @@
 # Librerias
 library(shiny)
 library(tidyverse)
+library(readxl)
 
 
 ##hOLA
 
 # Preguntas
-preguntas <- readxl::read_xlsx("www/Libro1.xlsx")
 
 # Categorias
 cats <- preguntas$categoria %>% unique() %>% sort()
@@ -23,3 +23,13 @@ op <- function(catego){
 
 }
 
+# Funcion para obtener preguntas del usuario
+op_prueba <- function(data, catego){
+  (pregunta_pantalla <- data %>% 
+     filter(categoria == catego) %>% 
+     pull(pregunta) %>% 
+     sample(1))
+  
+  return(pregunta_pantalla)
+  
+}
