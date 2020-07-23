@@ -7,6 +7,7 @@ library(readxl)
 ##hOLA
 
 # Preguntas
+preguntas <- read_xlsx("www/Libro1.xlsx")
 
 # Categorias
 cats <- preguntas$categoria %>% unique() %>% sort()
