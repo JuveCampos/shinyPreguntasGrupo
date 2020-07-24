@@ -27,6 +27,13 @@ body {
   text-align:center;
 }
 
+#texto_prueba{
+  font-family: 'Poppins', sans-serif;
+  font-size: 50px;
+  text-align:center;
+  color: #008000;
+}
+
 
 .btn-platzi:hover {
   background-color: #82ad36;
