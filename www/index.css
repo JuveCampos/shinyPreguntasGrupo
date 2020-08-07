@@ -1,21 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
-.text-platzi {
-  color: #97c93e !important;
-}
 
-.btn-platzi {
-  background-color: #97c93e;
-  color: black;
-}
-
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+p {
+    font-family: 'Poppins';
     font-size: 14px;
     line-height: 1.42857143;
-    color: #862020;
-    background-color: #fff;
+    color: black;
 }
+
+h1 {
+  color: #007d68;
+  font-family: 'Poppins-bold';
+  text-align:center;
+}
+
+.skin-black .main-header>.logo {
+    background-color: #fff;
+    color: #333;
+    border-bottom: 0 solid transparent;
+    border-right: 1px solid #eee;
+    font-family: Poppins-bold;
+    color: #007d68;
+}
+
+
+
+ .content-wrapper, .right-side {
+    background-color: white;
+  }
 
 #texto{
   font-family: 'Poppins', sans-serif;
@@ -32,11 +44,6 @@ body {
   font-size: 50px;
   text-align:center;
   color: #008000;
-}
-
-
-.btn-platzi:hover {
-  background-color: #82ad36;
 }
 
 #header img {

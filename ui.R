@@ -2,7 +2,7 @@ library(shinydashboard)
 library(shiny)
 library(shinycssloaders)
 
-dbHeader <- dashboardHeader(title = "Preguntas 😊", 
+dbHeader <- dashboardHeader(title = "Preguntas 🤔", 
                             titleWidth = 180,
                             tags$li(a(href = 'https://www.cide.edu',
                                       img(src = 'https://www.cide.edu/wp-content/themes/cide_general/img/logo_cide.png',
@@ -19,9 +19,10 @@ dbHeader <- dashboardHeader(title = "Preguntas 😊",
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
+    menuItem("Preguntas", tabName = "Preguntas", icon = icon("question")),
     menuItem("Instrucciones", tabName = "Instrucciones", icon = icon("book")),
-    menuItem("Cargar archivo", tabName = "upload", icon = icon("upload")),
-    menuItem("Preguntas", tabName = "Preguntas", icon = icon("question"))))
+    menuItem("Cargar archivo", tabName = "upload", icon = icon("upload")))
+)
 
 body <- dashboardBody(
   br(), 
@@ -36,17 +37,17 @@ body <- dashboardBody(
                                       label = "Categoría",
                                       choices = cats, 
                                       selected = cats[2]))),
+              # fluidRow(
+              #   column(4, offset = 4, 
+              #          actionButton(inputId = "btnAccion_prueba", 
+              #                       label = "Obtener pregunta de la base ingresada"))),
               fluidRow(
-                column(4, offset = 4, 
-                       actionButton(inputId = "btnAccion_prueba", 
-                                    label = "Obtener pregunta de la base ingresada"))),
-              fluidRow(
-                column(4, offset = 4, 
-                       actionButton(inputId = "btnAccion", 
+                column(4, offset = 4,
+                       actionButton(inputId = "btnAccion",
                                     label = "Obtener pregunta"))),
               br(),  
               fluidRow(
-                column(10, offset = 2, 
+                column(8, offset = 2, 
                        withSpinner(textOutput("texto"))
                 )
               ),
@@ -58,14 +59,21 @@ body <- dashboardBody(
                        )))),
       tabItem(tabName =  "Instrucciones", ## Panel de las instrucciones
               tags$h1("Instrucciones"),
-              tags$p("Bienvenido. Para mejorar tu experiencia, puedes subir un archivo excel con tus propias preguntas y seleccionaremos una aleatoriamente por ti."),
-              tags$p("Para que esto funcione es necesario seguir el mismo formato de la tabla que se muestra a continuación:"),
+              HTML("<p style = 'text-align: center;color:#c95b00;'>Bienvenido.</p>
+                    <p style = 'text-align: justify;'>Esta es una aplicación web elaborada por el LNPP para realizar dinámicas de hacer preguntas y conversaciones en grupo.
+                    <br>Esta aplicación selecciona preguntas al azar de un conjunto de preguntas para generar temas de conversación entre grupos de asistentes. 
+                    Para este fin, se recomienda usar la aplicación en conjunto con las <a href = 'https://support.zoom.us/hc/es/articles/206476093-Introducción-a-las-salas-para-grupos-pequeños'>Sesiones para Grupos Pequeños de Zoom</a>
+                    <p style = 'text-align: justify;'>Para personalizar la dinámica, se puede subir un archivo excel con preguntas propias y hacer la selección aleatoria a partir de estas.</p>"),
+              
+              HTML("<p>Para que esto funcione, el archivo debe tener el formato de columnas de la tabla que se muestra a continuación:</p>"),
+              
               fluidRow(
                 column(11, offset = 1,
                        tableOutput(outputId = "tabla_instrucciones"))
               ),
               fluidRow(
-                tags$p("Como puedes ver, el archivo excel debe tener dos columnas:", code("categoria"), "y", code("pregunta"), "Además, debes mantener las categorias correspondientes. ¡Diviértete!")
+                tags$p("Como puedes ver, el archivo excel debe tener dos columnas:", code("categoria"), "y", code("pregunta"), "Además, debes mantener las categorias correspondientes."), 
+                HTML("<p style = 'text-align:center; color:#c95b00;'>Diviertete, y suerte con la dinámica</p>")
               )),
       tabItem(tabName = "upload", ### Panel para cargar el archivo
               fluidRow(
@@ -73,10 +81,15 @@ body <- dashboardBody(
               fluidRow(
                 tags$p("En esta sección puedes subir tu archivo excel")),
               wellPanel(fileInput("file1", "Elige un archivo Excel",
+                                  buttonLabel = "Seleccionar Archivo...",
+                                  placeholder = "No hay archivo seleccionado",
                                   accept = c(".xlsx"))),
               fluidRow(
-                tags$p("A continuación se muestra una tabla con las preguntas pre cargargas. Una vez que ingrese su archivo excel, la tabla cambiará a sus propias preguntas. De esta forma puede visualizar si hay algún error antes de comenzar.")
-              ),
+                tags$p("A continuación se muestra una tabla con las preguntas que se encuentran en el sistema. 
+                       Una vez que ingrese su archivo excel, 
+                       la tabla mostrará sus propias preguntas. 
+                       De esta forma puede visualizar si hay algún error 
+                       antes de comenzar la dinámica grupal.")),
               fluidRow(tableOutput("tabla_muestra"))
       ))
   )) 
