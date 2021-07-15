@@ -12,7 +12,7 @@ dbHeader <- dashboardHeader(title = "Preguntas 🤔",
                             class = "dropdown"),
                             
                             tags$li(a(href = 'http://lnpp.cide.edu',
-                                      img(src = 'http://lnpp.cide.edu/wp-content/themes/lnpp/images/logo.svg',
+                                      img(src = 'http://datos.cide.edu/themes/Mirage2/images/logo.svg',
                                           title = "LNPP", height = "30px", id = "optionalstuff3"),
                                       style = "padding-top:10px; padding-bottom:10px;"),
                                     class = "dropdown"))
